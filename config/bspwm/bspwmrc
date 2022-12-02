@@ -1,0 +1,33 @@
+#!/bin/sh
+
+#
+# ██████╗ ███████╗██████╗ ██╗    ██╗███╗   ███╗
+# ██╔══██╗██╔════╝██╔══██╗██║    ██║████╗ ████║
+# ██████╔╝███████╗██████╔╝██║ █╗ ██║██╔████╔██║
+# ██╔══██╗╚════██║██╔═══╝ ██║███╗██║██║╚██╔╝██║
+# ██████╔╝███████║██║     ╚███╔███╔╝██║ ╚═╝ ██║
+# ╚═════╝ ╚══════╝╚═╝      ╚══╝╚══╝ ╚═╝     ╚═╝
+# 
+#  ▓▓▓▓▓▓▓▓▓▓
+# ░▓ author ▓ scott <mcdermidscott@gmail.com>
+# ░▓ code   ▓ http://lab.thedeadbeat.club/scott/dotfiles
+# ░▓▓▓▓▓▓▓▓▓▓
+# ░░░░░░░░░░
+#
+
+xrandr --output DP-1 --primary --mode 2560x1440 --pos 0x1120 --rotate normal --output DP-2 --mode 2560x1440 --pos 2560x0 --rotate left --output HDMI-1 --off --output HDMI-2 --off --output DVI-D-1 --off
+xrdb -merge $HOME/.Xresources
+
+pgrep -x sxhkd > /dev/null || sxhkd &
+
+bspc monitor DP-1 -d 1 2
+bspc monitor DP-2 -d 3 4
+
+bspc config window_gap 20
+bspc config split_ratio 0.52
+bspc config gapless_monocle false
+bspc config focus_follows_pointer true
+
+killall feh; ~/.config/feh/wallpaper.sh &
+killall picom; picom --config ~/.config/picom/picom.conf &
+~/.config/polybar/launch.sh

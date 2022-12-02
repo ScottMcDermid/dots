@@ -1,8 +1,8 @@
 Installation
 ============
 
-Warning: this will overwrite your current dots)
+Warning: this will overwrite your current dots
 
 ```sh
-rsync -a ./dots/ ~/
+rsync -a ./dots/config/ ~/.config/
 ```
